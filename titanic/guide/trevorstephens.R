@@ -1,3 +1,8 @@
+# Trevor Stephens - 9 Jan 2014
+# Titanic: Getting Started With R 
+# Full guide available at http://trevorstephens.com/
+
+
 
 
 ###################################### PART 1 ######################################
