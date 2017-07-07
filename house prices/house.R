@@ -28,6 +28,20 @@ combi$MSZoning[is.na(combi$MSZoning)] <- "RL"
 
 
 #LotFrontage : replacing NA by median
+
+combi$LotFrontage[is.na(combi$LotFrontage)] <- predict(lm(LotFrontage ~ LotArea , data=combi))
+
+write.csv(combi, "as.csv")
+
+
+
+predict(lm(LotFrontage ~ LotArea , data=combi), newdata = combi$LotFrontage[is.na(combi$LotFrontage)])
+
+
+
+
+
+
 combi$LotFrontage[is.na(combi$LotFrontage)] <- median(combi$LotFrontage, na.rm = TRUE)
 
 
