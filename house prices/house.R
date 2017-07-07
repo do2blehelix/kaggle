@@ -28,9 +28,5 @@ model.dt <- rpart(SalePrice ~ . , data=train)
 
 fancyRpartPlot(model.dt)
 
-Predicted <- predict(model.dt, test, type = "class")
-submit <- data.frame(PassengerId = test$PassengerId, Survived = Predicted)
-write.csv(submit, file = "OUT.csv", row.names = FALSE)
-
-
-
+fancyRpartPlot(model.dt)
+plot(model.dt)
