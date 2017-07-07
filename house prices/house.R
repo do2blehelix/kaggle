@@ -4,7 +4,7 @@
 # ----------------------------- IMPORTING THE DATA --------------------------------------------- #
 
 #import the datasets
-train <- read.csv("house prices\\train.csv") ; test <- read.csv("house prices\\test.csv")
+train <- read.csv("train.csv") ; test <- read.csv("test.csv")
 
 #combine both to get one data
 test$SalePrice <- NA
@@ -20,17 +20,25 @@ str(combi)
 
 
 
+# ----------------------------- VARIABLE TREATMENT --------------------------------------------- #  
 
-#............. Decision Tree ...........................#
 
-library(rpart) ; library(rattle)
-model.dt <- rpart(SalePrice ~ . , data=train)
+#MSZoning : replacing NA by mode = RL 
+combi$MSZoning[is.na(combi$MSZoning)] <- "RL"
 
-fancyRpartPlot(model.dt)
 
-Predicted <- predict(model.dt, test, type = "class")
-submit <- data.frame(PassengerId = test$PassengerId, Survived = Predicted)
-write.csv(submit, file = "OUT.csv", row.names = FALSE)
+#LotFrontage : replacing NA by median
+combi$LotFrontage[is.na(combi$LotFrontage)] <- median(combi$LotFrontage, na.rm = TRUE)
+
+
+
+
+
+
+
+# ----------------------------- FEATURE ENGINEERING I --------------------------------------------- #  
+
+
 
 
 
