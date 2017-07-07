@@ -20,13 +20,36 @@ str(combi)
 
 
 
+# ----------------------------- VARIABLE TREATMENT --------------------------------------------- #  
 
-#............. Decision Tree ...........................#
 
-library(rpart) ; library(rattle)
-model.dt <- rpart(SalePrice ~ . , data=train)
+#MSZoning : replacing NA by mode = RL 
+combi$MSZoning[is.na(combi$MSZoning)] <- "RL"
 
-fancyRpartPlot(model.dt)
 
-fancyRpartPlot(model.dt)
-plot(model.dt)
+#LotFrontage : imputing NA based on LotFrontage data (simple linear regression)
+combi$LotFrontage[is.na(combi$LotFrontage)] <- predict(lm(LotFrontage ~ LotArea , data=combi))
+
+
+#Alley : replacing NA by 'No' Alley Access
+combi$Alley <- factor(ifelse(is.na(combi$Alley), "No", paste(combi$Alley)), levels = c(levels(combi$Alley), "No"))
+
+
+#Utilities : replacing by Mode=AllPub
+combi$Utilities[is.na(combi$Utilities)] <- "AllPub"
+
+
+
+
+
+summary(combi$Utilities)
+
+summary(combi)
+
+
+
+
+# ----------------------------- FEATURE ENGINEERING I --------------------------------------------- #  
+
+
+
