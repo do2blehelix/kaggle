@@ -39,10 +39,21 @@ combi$Alley <- factor(ifelse(is.na(combi$Alley), "No", paste(combi$Alley)), leve
 combi$Utilities[is.na(combi$Utilities)] <- "AllPub"
 
 
+#Exterior1st & Exterior2nd : Wd Sdng as all Roof Material with 'Tar&Grv' and remodeled recently have the same 
+combi[which(combi$RoofMatl == "Tar&Grv"),]
+combi$Exterior1st [is.na(combi$Exterior1st)] <- "Wd Sdng"
+combi$Exterior2nd [is.na(combi$Exterior2nd)] <- "Wd Sdng"
 
 
 
-summary(combi$Utilities)
+#MasVnrType : 
+combi$MasVnrType
+
+table(combi$RoofMatl , addNA(combi$MasVnrType))
+
+table(combi$MasVnrArea , (combi$MasVnrType)
+
+summary(combi$MasVnrType)
 
 summary(combi)
 
